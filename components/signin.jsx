@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   StyleSheet,
   Image,
@@ -10,6 +11,16 @@ import {
 import Logo from "../assets/planeiconnobg.png";
 
 export default function SignIn() {
+  //STATES
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  //USEEFFECTS
+
+  //HANDLERS
+
+  //RENDER
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <View>
@@ -19,20 +30,26 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             placeholder="Username"
-            // value={}
-            // onChangeText = {text => {}}
+            value={username}
+            onChangeText={(text) => {
+              setUsername(text);
+            }}
           />
           <TextInput
             style={styles.input}
             placeholder="Email"
-            // value={}
-            // onChangeText = {text => {}}
+            value={email}
+            onChangeText={(text) => {
+              setEmail(text);
+            }}
           />
           <TextInput
             style={styles.input}
             placeholder="Password"
-            // value={}
-            // onChangeText = {text => {}}
+            value={password}
+            onChangeText={(text) => {
+              setPassword;
+            }}
             secureTextEntry
           />
         </View>
@@ -51,6 +68,8 @@ export default function SignIn() {
     </KeyboardAvoidingView>
   );
 }
+
+//STYLE
 
 const styles = StyleSheet.create({
   container: {
