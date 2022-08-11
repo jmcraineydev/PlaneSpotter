@@ -1,8 +1,10 @@
 import { StyleSheet, Image, Text, View } from "react-native";
+import Logo from "../assets/planeiconnobg.png";
 
 export default function Banner() {
   return (
     <View style={styles.container}>
+      <Image style={styles.logo} source={Logo} />
       <Text style={styles.banner_text}>PlaneSpotter</Text>
     </View>
   );
@@ -10,7 +12,8 @@ export default function Banner() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.5,
+    flexDirection: "row",
     width: 450,
     paddingTop: 25,
     height: 25,
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   logo: {
-    width: 25,
-    height: 25,
+    width: 100,
+    height: 100,
   },
 });
