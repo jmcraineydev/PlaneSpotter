@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from "@firebase/auth";
 import { auth } from "../firebase";
+import axios from "axios";
 import {
   StyleSheet,
   Image,
@@ -39,8 +40,21 @@ export default function SignIn(props) {
       .then((userCredentials) => {
         const user = userCredentials.user;
         setUserInfo({ email: user.email, uid: user.uid });
+        postNewUserToDB(user.email, user.uid);
       })
       .catch((err) => alert(err.message));
+  };
+
+  const postNewUserToDB = async (email, uid) => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_PATH}users/`, {
+        user_name: `${email}`,
+        email: `${email}`,
+        uid: `${uid}`,
+      });
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   //RENDER
