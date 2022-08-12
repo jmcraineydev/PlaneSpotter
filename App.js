@@ -45,7 +45,7 @@ export default function App() {
         <View>
           {/* <Banner /> */}
           <Map />
-          <List />
+          <List userInfo={userInfo} hasSignedIn={hasSignedIn} />
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleSignOut} style={styles.button}>
               <Text>Sign Out</Text>
