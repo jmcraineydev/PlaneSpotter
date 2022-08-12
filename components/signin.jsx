@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "firebase/auth";
+} from "@firebase/auth";
 import { auth } from "../firebase";
 import {
   StyleSheet,
@@ -15,30 +15,30 @@ import {
 } from "react-native";
 import Logo from "../assets/planeiconnobg.png";
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const { setUserInfo } = props;
+
   //STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [displayName, setDisplayName] = useState("");
 
   //USEEFFECTS
 
   //HANDLERS
   const handleRegister = () => {
-    //const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password, displayName)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
+        setUserInfo({ email: user.email, uid: user.uid });
       })
       .catch((err) => alert(err.message));
   };
   const handleSignIn = () => {
-    //const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
+        setUserInfo({ email: user.email, uid: user.uid });
       })
       .catch((err) => alert(err.message));
   };
@@ -53,9 +53,9 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             placeholder="Username"
-            value={username}
+            value={displayName}
             onChangeText={(text) => {
-              setUsername(text);
+              setDisplayName(text);
             }}
           />
           <TextInput
