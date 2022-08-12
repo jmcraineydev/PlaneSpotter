@@ -24,7 +24,6 @@ export default function List(props) {
     await axios
       .get(`${process.env.REACT_APP_API_PATH}follows/${email}`)
       .then((res) => {
-        console.log(res.data);
         setPlaneList(res.data);
       })
       .catch((err) => {

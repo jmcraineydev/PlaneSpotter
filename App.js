@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 
 import { signOut } from "@firebase/auth";
@@ -15,12 +16,15 @@ import Banner from "./components/banner";
 import Map from "./components/map";
 import List from "./components/list";
 import SignIn from "./components/signin";
+import AddPlaneModal from "./components/addPlaneModal";
 
 export default function App() {
   //STATES
   const [hasSignedIn, setHasSignedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [aircraftFollows, setAircraftFollows] = useState([]);
+  const [showAddPlaneModal, setShowAddPlaneModal] = useState(false);
+  const [planeList, setPlaneList] = useState([]);
 
   //USEEFFECTS
   useEffect(() => {
@@ -38,6 +42,15 @@ export default function App() {
       .catch((err) => alert(err.message));
   };
 
+  const toggleAddPlaneModal = () => {
+    if (showAddPlaneModal) {
+      setShowAddPlaneModal(false);
+    }
+    if (!showAddPlaneModal) {
+      setShowAddPlaneModal(true);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {!hasSignedIn ? (
@@ -50,15 +63,30 @@ export default function App() {
             userInfo={userInfo}
             hasSignedIn={hasSignedIn}
             setAircraftFollows={setAircraftFollows}
+            planeList={planeList}
+            setPlaneList={setPlaneList}
           />
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleSignOut} style={styles.button}>
               <Text>Sign Out</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}} style={styles.button}>
+            <TouchableOpacity
+              onPress={toggleAddPlaneModal}
+              style={styles.button}
+            >
               <Text>Add Plane</Text>
             </TouchableOpacity>
           </View>
+          {showAddPlaneModal ? (
+            <AddPlaneModal
+              userInfo={userInfo}
+              setShowAddPlaneModal={setShowAddPlaneModal}
+              planeList={planeList}
+              setPlaneList={setPlaneList}
+            />
+          ) : (
+            <Text></Text>
+          )}
           <StatusBar style="auto" />
         </View>
       )}
