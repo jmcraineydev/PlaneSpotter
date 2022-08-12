@@ -3,9 +3,8 @@ import axios from "axios";
 import { StyleSheet, Image, Text, View, FlatList } from "react-native";
 
 export default function List(props) {
-  const { userInfo, hasSignedIn, setAircraftFollows } = props;
+  const { userInfo, setAircraftFollows, planeList, setPlaneList } = props;
   //STATE
-  const [planeList, setPlaneList] = useState([]);
 
   //USEEFFECT
   useEffect(() => {

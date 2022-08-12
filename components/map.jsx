@@ -15,10 +15,11 @@ export default function Map(props) {
       showsUserLocation={false}
     >
       {aircraftFollows
-        ? aircraftFollows.map((aircraft) => (
+        ? aircraftFollows.map((aircraft, index) => (
             <Marker
               coordinate={{ latitude: aircraft.lat, longitude: aircraft.lng }}
               title={aircraft.reg_number}
+              key={index}
             >
               <Image
                 source={require("../assets/markericon.png")}
