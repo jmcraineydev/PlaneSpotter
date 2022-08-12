@@ -21,13 +21,13 @@ export default function SignIn(props) {
   //STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  //const [displayName, setDisplayName] = useState("");
 
   //USEEFFECTS
 
   //HANDLERS
   const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password, displayName)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
         setUserInfo({ email: user.email, uid: user.uid });
@@ -50,14 +50,14 @@ export default function SignIn(props) {
         <Image style={styles.logo} source={Logo} />
         <Text style={styles.banner_text}>PlaneSpotter</Text>
         <View style={styles.inputContainer}>
-          <TextInput
+          {/* <TextInput
             style={styles.input}
             placeholder="Username"
             value={displayName}
             onChangeText={(text) => {
               setDisplayName(text);
             }}
-          />
+          /> */}
           <TextInput
             style={styles.input}
             placeholder="Email"
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontStyle: "italic",
-    marginBottom: 20,
+    marginBottom: 50,
   },
   logo: {
     width: 100,

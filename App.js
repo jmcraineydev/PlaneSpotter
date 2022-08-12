@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 
-import { signOUt } from "@firebase/auth";
+import { signOut } from "@firebase/auth";
 import { auth } from "./firebase";
 
 import Banner from "./components/banner";
@@ -22,6 +28,15 @@ export default function App() {
     }
   }, [userInfo]);
 
+  //HANDLERS
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        setHasSignedIn(false);
+      })
+      .catch((err) => alert(err.message));
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {!hasSignedIn ? (
@@ -31,7 +46,14 @@ export default function App() {
           {/* <Banner /> */}
           <Map />
           <List />
-          <Text>This is a place holder for text</Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={handleSignOut} style={styles.button}>
+              <Text>Sign Out</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}} style={styles.button}>
+              <Text>Add Plane</Text>
+            </TouchableOpacity>
+          </View>
           <StatusBar style="auto" />
         </View>
       )}
@@ -45,5 +67,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: 25,
+  },
+  button: {
+    backgroundColor: "#03f0fc",
+    width: 100,
+    padding: 15,
+    borderRadius: "50%",
+    alignItems: "center",
   },
 });
