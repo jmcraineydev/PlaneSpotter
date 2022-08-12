@@ -1,5 +1,10 @@
 import { useState } from "react";
 import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebase";
+import {
   StyleSheet,
   Image,
   Text,
@@ -19,6 +24,24 @@ export default function SignIn() {
   //USEEFFECTS
 
   //HANDLERS
+  const handleRegister = () => {
+    //const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch((err) => alert(err.message));
+  };
+  const handleSignIn = () => {
+    //const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch((err) => alert(err.message));
+  };
 
   //RENDER
   return (
@@ -48,17 +71,17 @@ export default function SignIn() {
             placeholder="Password"
             value={password}
             onChangeText={(text) => {
-              setPassword;
+              setPassword(text);
             }}
             secureTextEntry
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <TouchableOpacity onPress={handleSignIn} style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {}}
+            onPress={handleRegister}
             style={[styles.button, styles.buttonOutline]}
           >
             <Text style={styles.buttonOutlineText}>Register</Text>
