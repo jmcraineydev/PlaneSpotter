@@ -1,5 +1,5 @@
 import { StyleSheet, Image, Text, View } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 
 // export default class Map extends Component<Props> {
 //   render() {
@@ -18,7 +18,8 @@ import MapView from "react-native-maps";
 //   }
 // }
 
-export default function Map() {
+export default function Map(props) {
+  const { aircraftFollows } = props;
   return (
     <MapView
       style={styles.container}
@@ -29,7 +30,24 @@ export default function Map() {
       //   longitudeDelta: 0.0421,
       // }}
       showsUserLocation={false}
-    />
+    >
+      {aircraftFollows
+        ? aircraftFollows.map((aircraft) => (
+            <Marker
+              coordinate={{ latitude: aircraft.lat, longitude: aircraft.lng }}
+              title={aircraft.reg_number}
+            >
+              <Image
+                source={require("../assets/markericon.png")}
+                style={[
+                  styles.mapMarker,
+                  { transform: [{ rotate: `${aircraft.dir - 90}deg` }] },
+                ]}
+              />
+            </Marker>
+          ))
+        : ""}
+    </MapView>
     // <Text>MAP Container</Text>
   );
 }
@@ -48,4 +66,15 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // justifyContent: "center",
   },
+  mapMarker: {
+    height: 30,
+    width: 30,
+  },
 });
+
+<Marker coordinate={{ latitude: 38.71, longitude: 140.46 }} title={"JA743A"}>
+  <Image
+    source={require("../assets/markericon.png")}
+    style={styles.mapMarker}
+  />
+</Marker>;

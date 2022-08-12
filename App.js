@@ -20,6 +20,7 @@ export default function App() {
   //STATES
   const [hasSignedIn, setHasSignedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [aircraftFollows, setAircraftFollows] = useState([]);
 
   //USEEFFECTS
   useEffect(() => {
@@ -44,8 +45,12 @@ export default function App() {
       ) : (
         <View>
           {/* <Banner /> */}
-          <Map />
-          <List userInfo={userInfo} hasSignedIn={hasSignedIn} />
+          <Map aircraftFollows={aircraftFollows} />
+          <List
+            userInfo={userInfo}
+            hasSignedIn={hasSignedIn}
+            setAircraftFollows={setAircraftFollows}
+          />
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleSignOut} style={styles.button}>
               <Text>Sign Out</Text>
