@@ -35,7 +35,6 @@ export default function List(props) {
 
   return (
     <View style={styles.container}>
-      {/* <Text>Your Planes: </Text> */}
       {planeList ? (
         <FlatList
           data={planeList}

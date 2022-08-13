@@ -32,6 +32,7 @@ export default function SignIn(props) {
       .then((userCredentials) => {
         const user = userCredentials.user;
         setUserInfo({ email: user.email, uid: user.uid });
+        postNewUserToDB(user.email, user.uid);
       })
       .catch((err) => alert(err.message));
   };
@@ -40,17 +41,16 @@ export default function SignIn(props) {
       .then((userCredentials) => {
         const user = userCredentials.user;
         setUserInfo({ email: user.email, uid: user.uid });
-        postNewUserToDB(user.email, user.uid);
       })
       .catch((err) => alert(err.message));
   };
 
   const postNewUserToDB = async (email, uid) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_PATH}users/`, {
-        user_name: `${email}`,
-        email: `${email}`,
-        uid: `${uid}`,
+      await axios.post(`${process.env.REACT_APP_API_PATH}users`, {
+        user_name: email,
+        email: email,
+        uid: uid,
       });
     } catch (err) {
       alert(err.message);
