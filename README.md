@@ -1,4 +1,4 @@
-<center> Plane Spotter </center>
+# PlaneSpotter
 
 ![airplane icon](./assets/plane.png)
 
@@ -20,8 +20,10 @@ This repo contains the front end of **PlaneSpotter** which was build with REACT-
 
 ## Backend
 
-You can find the backend of **PlaneSpotter** at this GitHub repo
+You can find the backend of **PlaneSpotter** at this [GitHub repo](https://github.com/jmcraineydev/plane_spotter)
 
 The following are currently under development:
 
 - Deployment on Expo
+- Live tracking
+- Tracking for all regions
