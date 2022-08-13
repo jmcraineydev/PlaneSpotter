@@ -48,6 +48,10 @@ export default function AddPlaneModal(props) {
       });
   };
 
+  const closeModal = () => {
+    setShowAddPlaneModal(false);
+  };
+
   //RENDER
 
   return (
@@ -66,6 +70,12 @@ export default function AddPlaneModal(props) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={addNewPlaneFollow} style={styles.button}>
             <Text style={styles.buttonText}>Follow This Plane</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={closeModal}
+            style={[styles.button, styles.buttonOutline]}
+          >
+            <Text style={styles.buttonOutlineText}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
