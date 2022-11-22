@@ -2,7 +2,7 @@
 
 # Plane Spotter
 
-![https://github.com/jmcraineydev/PlaneSpotter/raw/main/assets/plane.png](https://github.com/jmcraineydev/PlaneSpotter/raw/main/assets/plane.png)
+<img src="./assets/plane.png" alt="app icon" width="100"/>
 
 **PlaneSpotter** is an app for those who enjoy plane spotting at a hobby. The idea behind this app to track particular aircraft that you would like to get notifications on when it will be inbound at an airport near you.
 
