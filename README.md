@@ -1,4 +1,4 @@
-# README.md
+<center> Plane Spotter </center>
 
 # Plane Spotter
 
@@ -20,6 +20,10 @@ At this time **PlaneSpotter** is restricted to aircraft that carry the US or J
 
 This repo contains the front end of **PlaneSpotter** which was build with REACT-NATIVE and will soon be deployed on EXPO as development continues
 
-## **Backend**
+You can find the backend of **PlaneSpotter** at this [GitHub repo](https://github.com/jmcraineydev/plane_spotter)
 
-You can find the backend of **PlaneSpotter** at this GitHub repo [https://github.com/jmcraineydev/plane_spotter](https://github.com/jmcraineydev/plane_spotter)
+The following are currently under development:
+
+- Deployment on Expo
+- Live tracking
+- Tracking for all regions
